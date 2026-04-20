@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<section class="section-head">
+    <div>
+        <p class="eyebrow">CRAWL DASHBOARD</p>
+        <h1>Run #{{ run.id }}</h1>
+        <p class="muted">Seed URL: {{ run.seed_url }}</p>
+    </div>
+    <a href="{{ url_for('pages', run_id=run.id) }}" class="btn-secondary">View All Pages</a>
+</section>
+
+<section class="stats-grid">
+    <div class="glass-card stat-card">
+        <h3>{{ page_count }}</h3>
+        <p>Total Pages</p>
+    </div>
+    <div class="glass-card stat-card">
+        <h3>{{ link_count }}</h3>
+        <p>Total Links</p>
+    </div>
+    <div class="glass-card stat-card">
+        <h3>{{ success_count }}</h3>
+        <p>Successful Fetches</p>
+    </div>
+    <div class="glass-card stat-card">
+        <h3>{{ failed_count }}</h3>
+        <p>Failures</p>
+    </div>
+</section>
+
+<section class="glass-card table-card">
+    <div class="card-head">
+        <h2>Recent Pages</h2>
+    </div>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>URL</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for page in recent_pages %}
+                <tr>
+                    <td>{{ page.title }}</td>
+                    <td class="truncate">{{ page.url }}</td>
+                    <td>{{ page.status_code }}</td>
+                    <td><a href="{{ url_for('page_detail', page_id=page.id) }}">Open</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

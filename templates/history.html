@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Crawl History{% endblock %}
+
+{% block content %}
+<section class="section-head">
+    <div>
+        <p class="eyebrow">CRAWL RUNS</p>
+        <h1>History</h1>
+    </div>
+</section>
+
+<section class="glass-card table-card">
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Run ID</th>
+                    <th>Seed URL</th>
+                    <th>Max Pages</th>
+                    <th>Pages Crawled</th>
+                    <th>Same Domain</th>
+                    <th>Started</th>
+                    <th>Open</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for run in runs %}
+                <tr>
+                    <td>#{{ run.id }}</td>
+                    <td class="truncate">{{ run.seed_url }}</td>
+                    <td>{{ run.max_pages }}</td>
+                    <td>{{ run.pages_crawled }}</td>
+                    <td>{{ 'Yes' if run.same_domain else 'No' }}</td>
+                    <td>{{ run.started_at }}</td>
+                    <td><a href="{{ url_for('dashboard', run_id=run.id) }}">Dashboard</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

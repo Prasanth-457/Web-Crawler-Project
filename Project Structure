@@ -1,0 +1,21 @@
+advanced-web-crawler/
+│
+├── app.py
+├── crawler.py
+├── models.py
+├── requirements.txt
+├── README.md
+│
+├── templates/
+│   ├── base.html
+│   ├── index.html
+│   ├── dashboard.html
+│   ├── pages.html
+│   ├── page_detail.html
+│   └── history.html
+│
+└── static/
+    ├── css/
+    │   └── style.css
+    └── js/
+        └── main.js

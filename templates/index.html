@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Launch Crawl{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-text">
+        <p class="eyebrow">ADVANCED FLASK PROJECT</p>
+        <h1>Build a futuristic <span>Web Crawler</span> dashboard</h1>
+        <p class="hero-subtext">
+            Crawl websites, collect metadata, store pages, map links, and explore results in a sleek analytics-style interface.
+        </p>
+    </div>
+
+    <div class="glass-card launch-card">
+        <h2>Start New Crawl</h2>
+        <form method="POST" class="crawl-form">
+            <label>Seed URL</label>
+            <input type="text" name="seed_url" placeholder="https://example.com" required>
+
+            <label>Maximum Pages</label>
+            <input type="number" name="max_pages" min="1" max="100" value="10" required>
+
+            <label class="checkbox-row">
+                <input type="checkbox" name="same_domain" checked>
+                <span>Restrict to same domain</span>
+            </label>
+
+            <button type="submit" class="btn-primary">Launch Crawl</button>
+        </form>
+    </div>
+</section>
+
+<section class="feature-grid">
+    <div class="glass-card feature-card">
+        <h3>Smart URL Queue</h3>
+        <p>BFS crawling using a managed queue and duplicate URL prevention.</p>
+    </div>
+    <div class="glass-card feature-card">
+        <h3>Metadata Extraction</h3>
+        <p>Collect titles, descriptions, status codes, and content types automatically.</p>
+    </div>
+    <div class="glass-card feature-card">
+        <h3>Link Mapping</h3>
+        <p>Store relationships between source and target pages for analysis.</p>
+    </div>
+    <div class="glass-card feature-card">
+        <h3>Search Dashboard</h3>
+        <p>Browse crawl runs, filter results, and inspect every stored page.</p>
+    </div>
+</section>
+{% endblock %}

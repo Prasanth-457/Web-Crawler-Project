@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Pages{% endblock %}
+
+{% block content %}
+<section class="section-head">
+    <div>
+        <p class="eyebrow">STORED RESULTS</p>
+        <h1>Crawled Pages</h1>
+    </div>
+</section>
+
+<section class="glass-card form-panel">
+    <form method="GET" class="filter-form">
+        <input type="text" name="q" value="{{ q }}" placeholder="Search by URL, title, or metadata...">
+
+        <select name="run_id">
+            <option value="">All Runs</option>
+            {% for run in runs %}
+                <option value="{{ run.id }}" {% if run_id == run.id|string %}selected{% endif %}>
+                    Run #{{ run.id }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit" class="btn-primary">Search</button>
+    </form>
+</section>
+
+<section class="page-grid">
+    {% for page in pages %}
+    <div class="glass-card page-card reveal">
+        <span class="badge">{{ page.status_code }}</span>
+        <h3>{{ page.title }}</h3>
+        <p class="page-url">{{ page.url }}</p>
+        <p>{{ page.meta_description }}</p>
+        <a class="btn-secondary small" href="{{ url_for('page_detail', page_id=page.id) }}">View Details</a>
+    </div>
+    {% else %}
+    <div class="glass-card empty-state">
+        <h3>No pages found</h3>
+        <p>Try a different search term or launch a new crawl.</p>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}

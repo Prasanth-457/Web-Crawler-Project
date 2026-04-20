@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Page Detail{% endblock %}
+
+{% block content %}
+<section class="section-head">
+    <div>
+        <p class="eyebrow">PAGE INSPECTION</p>
+        <h1>{{ page.title }}</h1>
+    </div>
+</section>
+
+<section class="detail-layout">
+    <div class="glass-card detail-card">
+        <h2>Page Information</h2>
+        <div class="detail-list">
+            <div><strong>URL:</strong> {{ page.url }}</div>
+            <div><strong>Status Code:</strong> {{ page.status_code }}</div>
+            <div><strong>Content Type:</strong> {{ page.content_type }}</div>
+            <div><strong>Crawled At:</strong> {{ page.crawled_at }}</div>
+            <div><strong>Description:</strong> {{ page.meta_description }}</div>
+        </div>
+    </div>
+
+    <div class="glass-card detail-card">
+        <h2>Outgoing Links</h2>
+        <ul class="link-list">
+            {% for link in outgoing_links %}
+                <li>{{ link.target_url }}</li>
+            {% else %}
+                <li>No outgoing links stored for this page.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}
